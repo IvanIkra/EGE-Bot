@@ -1,8 +1,8 @@
 import asyncio
 import json
 import logging
-import os
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
@@ -11,7 +11,14 @@ from aiogram.fsm.storage.redis import RedisStorage
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
-from config import BOT_TOKEN, DATABASE_URL, REDIS_URL
+from config import (
+    BOT_TOKEN,
+    DATABASE_URL,
+    REDIS_URL,
+    REMINDER_HOUR,
+    REMINDER_MINUTE,
+    REMINDER_TIMEZONE,
+)
 from db.models import Base, Word
 from db.queries import get_due_words_users
 from handlers.practice import router as practice_router
@@ -85,12 +92,12 @@ async def main() -> None:
     dp.include_router(practice_router)
     dp.include_router(stats_router)
 
-    scheduler = AsyncIOScheduler()
+    scheduler = AsyncIOScheduler(timezone=ZoneInfo(REMINDER_TIMEZONE))
     scheduler.add_job(
         send_reminders,
         trigger="cron",
-        hour=10,
-        minute=0,
+        hour=REMINDER_HOUR,
+        minute=REMINDER_MINUTE,
         args=[bot, session_factory],
     )
     scheduler.start()

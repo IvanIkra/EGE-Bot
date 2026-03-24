@@ -58,6 +58,9 @@ REDIS_URL=redis://redis:6379/0
 ADMIN_LOGIN=admin
 ADMIN_PASSWORD=your_password
 ADMIN_PORT=5001
+REMINDER_TIMEZONE=Europe/Moscow
+REMINDER_HOUR=14
+REMINDER_MINUTE=00
 ```
 
 > `user` and `supersecret123pass` must match `POSTGRES_USER` and `POSTGRES_PASSWORD` in `docker-compose.yml`.
