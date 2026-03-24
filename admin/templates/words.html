@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}Слова — EGE Bot Admin{% endblock %}
+{% block content %}
+<h1>Управление словами</h1>
+
+<div class="card">
+  <h2 style="margin-top:0">Загрузить JSON</h2>
+  <form method="post" action="/admin/words/upload" enctype="multipart/form-data" style="display:flex;gap:0.75rem;align-items:flex-end;flex-wrap:wrap;">
+    <div>
+      <label>Файл words.json</label>
+      <input type="file" name="file" accept=".json" required style="width:auto;margin-top:0.25rem;">
+    </div>
+    <button type="submit" class="btn btn-primary">Загрузить</button>
+  </form>
+</div>
+
+<div class="card">
+  <h2 style="margin-top:0">Добавить слово</h2>
+  <form method="post" action="/admin/words/add">
+    <div class="form-row">
+      <div>
+        <label>Слово с пропуском</label>
+        <input type="text" name="display" placeholder="пр_стой" required>
+      </div>
+      <div>
+        <label>Ответ</label>
+        <input type="text" name="answer" placeholder="о" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Тип вопроса</label>
+        <select name="question_type" required>
+          <option value="input">input (ввод текста)</option>
+          <option value="choice">choice (кнопки)</option>
+        </select>
+      </div>
+      <div>
+        <label>Номер задания (9–15)</label>
+        <input type="number" name="task_number" min="9" max="15" required>
+      </div>
+    </div>
+    <div>
+      <label>Варианты ответа (через запятую, только для choice)</label>
+      <input type="text" name="options" placeholder="Н, НН">
+    </div>
+    <div>
+      <label>Правило (fallback)</label>
+      <input type="text" name="rule" required>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-top:1rem">Добавить</button>
+  </form>
+</div>
+
+<div class="card">
+  <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:0.75rem;">
+    <h2 style="margin:0">Список слов</h2>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+      <a href="/admin/words" class="btn btn-secondary btn-sm{% if selected_task is none %} btn-primary{% endif %}">Все</a>
+      {% for tn in task_numbers %}
+      <a href="/admin/words?task={{ tn }}" class="btn btn-sm {% if selected_task == tn %}btn-primary{% else %}btn-secondary{% endif %}">№{{ tn }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if words %}
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Слово</th>
+        <th>Ответ</th>
+        <th>Тип</th>
+        <th>Задание</th>
+        <th>Статус</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for w in words %}
+      <tr>
+        <td>{{ w.id }}</td>
+        <td><code>{{ w.display }}</code></td>
+        <td>{{ w.answer }}</td>
+        <td>{{ w.question_type.value }}</td>
+        <td>№{{ w.task_number }}</td>
+        <td>
+          {% if w.is_active %}
+          <span class="badge badge-active">активно</span>
+          {% else %}
+          <span class="badge badge-inactive">скрыто</span>
+          {% endif %}
+        </td>
+        <td style="display:flex;gap:0.4rem;flex-wrap:wrap;">
+          <a href="/admin/words/{{ w.id }}/edit" class="btn btn-secondary btn-sm">Изменить</a>
+          <form class="inline" method="post" action="/admin/words/{{ w.id }}/toggle">
+            <button type="submit" class="btn btn-sm {% if w.is_active %}btn-danger{% else %}btn-primary{% endif %}">
+              {% if w.is_active %}Скрыть{% else %}Показать{% endif %}
+            </button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p style="color:#888">Нет слов для отображения.</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Результат загрузки — EGE Bot Admin{% endblock %}
+{% block content %}
+<h1>Результат загрузки</h1>
+
+<div class="card">
+  {% if added %}
+  <div class="success-msg">Успешно добавлено слов: <strong>{{ added }}</strong></div>
+  {% endif %}
+
+  {% if errors %}
+  <div class="error-list">
+    <strong>Ошибки ({{ errors | length }}):</strong>
+    <ul>
+      {% for e in errors %}
+      <li>{{ e }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if not added and not errors %}
+  <p style="color:#888">Файл пустой или не содержит записей.</p>
+  {% endif %}
+
+  <a href="/admin/words" class="btn btn-primary" style="margin-top:0.75rem">← Назад к словам</a>
+</div>
+{% endblock %}

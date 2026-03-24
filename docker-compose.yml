@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ege_bot
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: supersecret123pass
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+
+  bot:
+    build: .
+    restart: unless-stopped
+    command: python main.py
+    env_file: .env
+    depends_on:
+      - db
+      - redis
+
+  admin:
+    build: .
+    restart: unless-stopped
+    command: uvicorn admin.main:app --host 0.0.0.0 --port ${ADMIN_PORT:-5000}
+    env_file: .env
+    ports:
+      - "${ADMIN_PORT:-5000}:${ADMIN_PORT:-5000}"
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  pg_data:
+  redis_data:

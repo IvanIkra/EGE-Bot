@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Редактировать слово — EGE Bot Admin{% endblock %}
+{% block content %}
+<h1>Редактировать слово #{{ word.id }}</h1>
+
+<div class="card">
+  <form method="post" action="/admin/words/{{ word.id }}/edit">
+    <div class="form-row">
+      <div>
+        <label>Слово с пропуском</label>
+        <input type="text" name="display" value="{{ word.display }}" required>
+      </div>
+      <div>
+        <label>Ответ</label>
+        <input type="text" name="answer" value="{{ word.answer }}" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Тип вопроса</label>
+        <select name="question_type" required>
+          <option value="input" {% if word.question_type.value == 'input' %}selected{% endif %}>input (ввод текста)</option>
+          <option value="choice" {% if word.question_type.value == 'choice' %}selected{% endif %}>choice (кнопки)</option>
+        </select>
+      </div>
+      <div>
+        <label>Номер задания (9–15)</label>
+        <input type="number" name="task_number" min="9" max="15" value="{{ word.task_number }}" required>
+      </div>
+    </div>
+    <div>
+      <label>Варианты ответа (через запятую, только для choice)</label>
+      <input type="text" name="options" value="{{ word.options | join(', ') if word.options else '' }}">
+    </div>
+    <div>
+      <label>Правило (fallback)</label>
+      <input type="text" name="rule" value="{{ word.rule }}" required>
+    </div>
+    <div style="display:flex;gap:0.75rem;margin-top:1rem;">
+      <button type="submit" class="btn btn-primary">Сохранить</button>
+      <a href="/admin/words" class="btn btn-secondary">Отмена</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

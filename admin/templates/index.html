@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Дашборд — EGE Bot Admin{% endblock %}
+{% block content %}
+<h1>Дашборд</h1>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="value">{{ total_users }}</div>
+    <div class="label">Всего пользователей</div>
+  </div>
+  <div class="stat-card">
+    <div class="value">{{ active_7 }}</div>
+    <div class="label">Активных за 7 дней</div>
+  </div>
+  <div class="stat-card">
+    <div class="value">{{ active_30 }}</div>
+    <div class="label">Активных за 30 дней</div>
+  </div>
+  <div class="stat-card">
+    <div class="value">{{ answers_today }}</div>
+    <div class="label">Ответов сегодня</div>
+  </div>
+</div>
+
+<h2>Точность по заданиям</h2>
+<div class="card">
+  {% if task_stats %}
+  <table>
+    <thead>
+      <tr>
+        <th>Задание</th>
+        <th>Всего ответов</th>
+        <th>Правильных</th>
+        <th>% правильных</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in task_stats %}
+      <tr>
+        <td>№{{ t.task_number }}</td>
+        <td>{{ t.total }}</td>
+        <td>{{ t.correct }}</td>
+        <td>{{ t.pct }}%</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p style="color:#888">Нет данных — ещё никто не отвечал.</p>
+  {% endif %}
+</div>
+
+<h2>Самые трудные слова (топ-10 по ошибкам)</h2>
+<div class="card">
+  {% if hard_words %}
+  <table>
+    <thead>
+      <tr>
+        <th>Слово</th>
+        <th>Задание</th>
+        <th>Всего ответов</th>
+        <th>Ошибок</th>
+        <th>% ошибок</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for w in hard_words %}
+      <tr>
+        <td><code>{{ w.display }}</code></td>
+        <td>№{{ w.task_number }}</td>
+        <td>{{ w.total }}</td>
+        <td>{{ w.errors }}</td>
+        <td>{{ w.error_pct }}%</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p style="color:#888">Нет данных.</p>
+  {% endif %}
+</div>
+{% endblock %}

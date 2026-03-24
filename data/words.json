@@ -1,0 +1,158 @@
+[
+  {
+    "task_number": 9,
+    "question_type": "input",
+    "display": "пр_стой",
+    "answer": "о",
+    "rule": "Приставка ПРО- (значение: мимо, через, насквозь)"
+  },
+  {
+    "task_number": 9,
+    "question_type": "choice",
+    "display": "пр_брежный",
+    "answer": "и",
+    "options": ["е", "и"],
+    "rule": "Приставка ПРИ- (значение: близость, приближение)"
+  },
+  {
+    "task_number": 9,
+    "question_type": "choice",
+    "display": "пр_украсить",
+    "answer": "и",
+    "options": ["е", "и"],
+    "rule": "Приставка ПРИ- в значении неполноты действия"
+  },
+  {
+    "task_number": 9,
+    "question_type": "input",
+    "display": "бе_граничный",
+    "answer": "з",
+    "rule": "Приставка БЕЗ-/БЕС-: перед звонкой согласной — БЕЗ-"
+  },
+  {
+    "task_number": 9,
+    "question_type": "input",
+    "display": "ра_писание",
+    "answer": "с",
+    "rule": "Приставка РАЗ-/РАС-: перед глухой согласной — РАС-"
+  },
+  {
+    "task_number": 10,
+    "question_type": "input",
+    "display": "удосто_ть",
+    "answer": "и",
+    "rule": "Суффикс -ИТЬ в глаголах (удостоить)"
+  },
+  {
+    "task_number": 10,
+    "question_type": "choice",
+    "display": "заноч_вать",
+    "answer": "е",
+    "options": ["е", "о"],
+    "rule": "Суффикс -ЕВАТЬ (после мягкой основы): заночевать"
+  },
+  {
+    "task_number": 10,
+    "question_type": "choice",
+    "display": "гор_вать",
+    "answer": "е",
+    "options": ["е", "о"],
+    "rule": "Суффикс -ЕВАТЬ (горевать)"
+  },
+  {
+    "task_number": 11,
+    "question_type": "choice",
+    "display": "стел_щий",
+    "answer": "ю",
+    "options": ["ю", "я"],
+    "rule": "Причастие от глагола 1 спряжения (стелить → стелющий)"
+  },
+  {
+    "task_number": 11,
+    "question_type": "choice",
+    "display": "кле_щий",
+    "answer": "я",
+    "options": ["ю", "я"],
+    "rule": "Причастие от глагола 2 спряжения (клеить → клеящий)"
+  },
+  {
+    "task_number": 12,
+    "question_type": "choice",
+    "display": "увид_нный",
+    "answer": "е",
+    "options": ["е", "а"],
+    "rule": "Страдательное причастие прошедшего времени: увидеть → увиденный"
+  },
+  {
+    "task_number": 12,
+    "question_type": "choice",
+    "display": "потер_нный",
+    "answer": "я",
+    "options": ["е", "я"],
+    "rule": "Страдательное причастие прошедшего времени: потерять → потерянный"
+  },
+  {
+    "task_number": 13,
+    "question_type": "choice",
+    "display": "не с кем_то",
+    "answer": "раздельно",
+    "options": ["слитно", "раздельно"],
+    "rule": "НЕ с неопределёнными местоимениями с суффиксами -ТО, -ЛИБО, -НИБУДЬ — всегда раздельно через дефис"
+  },
+  {
+    "task_number": 13,
+    "question_type": "choice",
+    "display": "не_кто",
+    "answer": "слитно",
+    "options": ["слитно", "раздельно"],
+    "rule": "НЕКТО — отрицательное местоимение, пишется слитно (без предлога)"
+  },
+  {
+    "task_number": 14,
+    "question_type": "choice",
+    "display": "вряд_ли",
+    "answer": "раздельно",
+    "options": ["слитно", "раздельно"],
+    "rule": "ВРЯД ЛИ — наречное сочетание, пишется раздельно"
+  },
+  {
+    "task_number": 14,
+    "question_type": "choice",
+    "display": "точь_в_точь",
+    "answer": "через дефис",
+    "options": ["слитно", "через дефис", "раздельно"],
+    "rule": "ТОЧЬ-В-ТОЧЬ — наречие, пишется через дефис"
+  },
+  {
+    "task_number": 15,
+    "question_type": "choice",
+    "display": "некоше_ый луг",
+    "answer": "Н",
+    "options": ["Н", "НН"],
+    "rule": "Отглагольное прилагательное без приставки и зависимых слов — одна Н"
+  },
+  {
+    "task_number": 15,
+    "question_type": "choice",
+    "display": "скоше_ая трава",
+    "answer": "НН",
+    "options": ["Н", "НН"],
+    "rule": "Причастие с приставкой (с-косить) — НН"
+  },
+  {
+    "task_number": 15,
+    "question_type": "choice",
+    "display": "реше_ая задача",
+    "answer": "НН",
+    "options": ["Н", "НН"],
+    "rule": "Причастие совершенного вида (решить) — НН"
+  },
+  {
+    "task_number": 15,
+    "question_type": "choice",
+    "display": "жаре_ая картошка",
+    "answer": "Н",
+    "options": ["Н", "НН"],
+    "rule": "Отглагольное прилагательное без приставки и зависимых слов — одна Н"
+  }
+]
