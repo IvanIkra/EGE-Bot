@@ -41,7 +41,6 @@ The SM-2 algorithm decides which word to show next: the more mistakes you make, 
 
 ```bash
 git clone https://github.com/ivanikra/ege-bot
-cd jlgoioyfpos_bot
 ```
 
 ### 2. Create `.env`
